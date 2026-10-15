@@ -1,0 +1,147 @@
+{
+  "catalog_models": [
+    "vidu-q4-image-to-video",
+    "vidu-q4-reference-to-video"
+  ],
+  "actions": {
+    "vidu/image-to-video": {
+      "model": "Vidu",
+      "endpoint": "image_to_video",
+      "task_type": "asynchronous",
+      "models": [
+        "vidu-q4-image-to-video"
+      ],
+      "fields_by_model": {
+        "vidu-q4-image-to-video": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Vidu Q4 image-to-video model."
+          },
+          "first_frame_image_url": {
+            "type": "string",
+            "required": true,
+            "description": "HTTP(S) URL of a JPG, JPEG, PNG or WEBP first frame, up to 50 MB. The provider validates the remote file."
+          },
+          "prompt": {
+            "type": "string",
+            "max": 20000,
+            "length": true,
+            "description": "Optional video description, up to 20,000 characters."
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "max": 16,
+            "min": 3,
+            "default": 5,
+            "description": "Video duration in seconds."
+          },
+          "output_resolution": {
+            "type": "string",
+            "enum": [
+              "540p",
+              "720p",
+              "1080p",
+              "2k",
+              "4k"
+            ],
+            "default": "720p",
+            "description": "Output video resolution."
+          },
+          "audio": {
+            "type": "boolean",
+            "default": true,
+            "description": "Generate synchronized audio. False produces a silent video."
+          },
+          "callback_url": {
+            "type": "string",
+            "description": "RunAPI customer callback URL for the terminal task result."
+          }
+        }
+      }
+    },
+    "vidu/reference-to-video": {
+      "model": "Vidu",
+      "endpoint": "reference_to_video",
+      "task_type": "asynchronous",
+      "models": [
+        "vidu-q4-reference-to-video"
+      ],
+      "fields_by_model": {
+        "vidu-q4-reference-to-video": {
+          "model": {
+            "type": "string",
+            "required": true,
+            "description": "Vidu Q4 reference-to-video model."
+          },
+          "prompt": {
+            "type": "string",
+            "max": 20000,
+            "min": 1,
+            "length": true,
+            "required": true,
+            "description": "Video description, up to 20,000 characters."
+          },
+          "reference_image_urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "required": true,
+            "max_items": 15,
+            "min_items": 1,
+            "description": "Ordered HTTP(S) URLs of 1 to 15 JPG, JPEG, PNG or WEBP reference images. The provider validates the remote files."
+          },
+          "reference_audio_urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "max_items": 3,
+            "description": "Up to 3 HTTP(S) URLs of MP3 references, each 3 to 12 seconds and up to 50 MB. The provider validates the remote files."
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "enum": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "4:3",
+              "3:4"
+            ],
+            "default": "16:9",
+            "description": "Output video aspect ratio."
+          },
+          "duration_seconds": {
+            "type": "integer",
+            "max": 16,
+            "min": 3,
+            "default": 5,
+            "description": "Video duration in seconds."
+          },
+          "output_resolution": {
+            "type": "string",
+            "enum": [
+              "540p",
+              "720p",
+              "1080p",
+              "2k",
+              "4k"
+            ],
+            "default": "720p",
+            "description": "Output video resolution."
+          },
+          "audio": {
+            "type": "boolean",
+            "default": true,
+            "description": "Generate synchronized audio. False produces a silent video."
+          },
+          "callback_url": {
+            "type": "string",
+            "description": "RunAPI customer callback URL for the terminal task result."
+          }
+        }
+      }
+    }
+  }
+}

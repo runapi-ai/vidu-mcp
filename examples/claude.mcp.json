@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "vidu": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@runapi.ai/vidu-mcp"
+      ]
+    }
+  }
+}

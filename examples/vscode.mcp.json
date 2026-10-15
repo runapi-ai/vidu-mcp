@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "vidu": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@runapi.ai/vidu-mcp"
+      ]
+    }
+  }
+}
